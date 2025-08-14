@@ -16,6 +16,7 @@ export type CategorizedTicket = {
   subject: string;
   requester: string;
   category: string;
+  created_at: string;
 };
 
 const categories: Record<string, string[]> = {
@@ -81,7 +82,8 @@ export function categorizeTickets(tickets: Ticket[]): CategorizedTicket[] {
   return tickets.map(ticket => ({
     subject: ticket.subject,
     requester: ticket.requester?.name ?? "",
-    category: categorizeTicket(ticket.subject, ticket.comment?.body ?? "")
+    category: categorizeTicket(ticket.subject, ticket.comment?.body ?? ""),
+    created_at: ticket.created_at
   }));
 }
 
